@@ -73,6 +73,10 @@ public class Main {
 
         int serieCount = 0;
         int videojuegoCount = 0;
+        int serieMasLarga = 0;
+        int videojuegoMasLargo = 0;
+        String videojuegoMaslargoNombre = "";
+        String serieMaslargaNombre = "";
 
         for (Videojuegos videojuego : videojuegos){
             if (videojuego.isEntregado()){
@@ -85,7 +89,23 @@ public class Main {
             }
         }
 
+        for (Videojuegos videojuego : videojuegos){
+            if(videojuego.getHorasEstimadas() > videojuegoMasLargo){
+                videojuegoMasLargo = videojuego.getHorasEstimadas();
+                videojuegoMaslargoNombre = videojuego.getTitulo();
+            }
+        }
+
+        for (Serie serie : series){
+            if(serie.getNumeroDeTemporadas() > serieMasLarga){
+                serieMasLarga = serie.getNumeroDeTemporadas();
+                serieMaslargaNombre = serie.getTitulo();
+            }
+        }
+
         System.out.println("Hay "  + videojuegoCount + " videojuegos entregados");
         System.out.println("Hay " + serieCount + " series entregadas");
+        System.out.println("El videojuego mas largo es: " + videojuegoMaslargoNombre + " con " + videojuegoMasLargo + " horas");
+        System.out.println("La serie mas larga es: " + serieMaslargaNombre + " con " + serieMasLarga + " Temporadas");
     }
 }
